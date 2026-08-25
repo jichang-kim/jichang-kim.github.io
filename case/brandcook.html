@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>케이스 — 브랜드쿡 0→1 런칭 | 김지창</title>
+<meta name="description" content="가맹본부의 페인포인트에서 B2B 전용 플랫폼까지 — 분기 매출 30% 성장을 만든 0→1 케이스 스터디">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root { --bg:#FDFBF8; --surface:#FFFFFF; --ink:#1C2733; --ink-soft:#4A5A6A; --ink-faint:#8595A5; --line:#E9E2D8; --accent:#E8730C; --accent-soft:#FBF0E4; --shadow:0 1px 3px rgba(28,39,51,.06),0 8px 24px rgba(28,39,51,.05); }
+  @media (prefers-color-scheme: dark) { :root { --bg:#14181D; --surface:#1C222A; --ink:#EDF1F5; --ink-soft:#AEBBC8; --ink-faint:#6B7A89; --line:#2C353F; --accent:#F0883A; --accent-soft:#2A2118; --shadow:0 1px 3px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); } }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,"Apple SD Gothic Neo","Noto Sans KR",sans-serif; background:var(--bg); color:var(--ink); line-height:1.7; -webkit-font-smoothing:antialiased; word-break:keep-all; }
+  .wrap { max-width:720px; margin:0 auto; padding:0 20px 64px; }
+  .top { padding:28px 0 0; } .top a { font-size:14px; font-weight:600; color:var(--ink-soft); text-decoration:none; } .top a:hover { color:var(--accent); }
+  header.case { padding:36px 0 8px; }
+  .eyebrow { font-size:13px; font-weight:700; letter-spacing:.08em; color:var(--accent); }
+  h1 { font-size:30px; font-weight:800; letter-spacing:-.02em; line-height:1.3; margin-top:10px; }
+  .meta { margin-top:16px; display:flex; flex-wrap:wrap; gap:8px; }
+  .meta span { font-size:12.5px; font-weight:600; color:var(--ink-soft); background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:5px 13px; }
+  section { padding-top:36px; }
+  h2 { font-size:15px; font-weight:800; letter-spacing:.06em; color:var(--accent); margin-bottom:12px; }
+  p.body { font-size:15.5px; color:var(--ink-soft); margin-bottom:10px; }
+  p.body strong { color:var(--ink); }
+  ul.acts { list-style:none; margin-top:4px; }
+  ul.acts li { position:relative; padding:0 0 14px 30px; font-size:15px; color:var(--ink-soft); }
+  ul.acts li::before { content:attr(data-n); position:absolute; left:0; top:1px; width:21px; height:21px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-size:12px; font-weight:800; display:flex; align-items:center; justify-content:center; }
+  ul.acts li strong { color:var(--ink); }
+  .stats { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:6px; }
+  @media (min-width:560px){ .stats{ grid-template-columns:repeat(4,1fr);} }
+  .stat { background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:16px 14px; box-shadow:var(--shadow); }
+  .stat b { display:block; font-size:22px; font-weight:800; color:var(--accent); }
+  .stat span { display:block; margin-top:3px; font-size:12.5px; color:var(--ink-soft); line-height:1.45; }
+  .role { background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:12px; padding:18px 20px; font-size:14.5px; color:var(--ink-soft); }
+  .role b { color:var(--ink); }
+  .evidence { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:8px; }
+  .evidence figure { margin:0; }
+  .evidence img { width:100%; border:1px solid var(--line); border-radius:10px; display:block; }
+  .evidence figcaption { font-size:11.5px; color:var(--ink-faint); margin-top:6px; text-align:center; }
+  .ev-note { font-size:12.5px; color:var(--ink-faint); margin-top:10px; }
+  .next { margin-top:52px; padding-top:24px; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; font-size:14px; font-weight:600; }
+  .next a { color:var(--accent); text-decoration:none; } .next a:hover { text-decoration:underline; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a href="../index.html">← 김지창 포트폴리오</a></div>
+
+  <header class="case">
+    <span class="eyebrow">CASE STUDY 02 · PO / 0→1</span>
+    <h1>가맹본부의 페인포인트에서<br>B2B 전용 플랫폼 '브랜드쿡'까지</h1>
+    <div class="meta"><span>㈜식자재쿡 · CSO/PO</span><span>서비스 이원화 · 신규 플랫폼 런칭</span><span>기술연구부 6인 개발 리드</span></div>
+  </header>
+
+  <section>
+    <h2>문제 정의</h2>
+    <p class="body">B2C 식자재 유통을 운영하며 발견한 것은 <strong>프랜차이즈 가맹본부라는 별개의 고객</strong>이었습니다. 소규모 가맹본부는 ① 낮은 구매력(Buying Power) 탓에 대기업 3PL과 10%대 물류수수료로 계약하고 ② 가맹점 평균 매출 대비 차액가맹금 비율이 상승하며 본부–점주 갈등이 구조화되고 있었으며 ③ 데이터 기반 관리 도구가 없어 발주·정산이 수기에 머물러 있었습니다. 기존 B2C 화면 하나로는 이 고객을 담을 수 없었습니다.</p>
+  </section>
+
+  <section>
+    <h2>가설</h2>
+    <p class="body">"가맹본부와 가맹점주에게 <strong>전용 화면과 전용 데이터를 분리 제공</strong>하면 — 같은 유통 인프라 위에서도 본부의 지불의사가 생기고, 홍보·입점이라는 <strong>새 수익 채널</strong>이 열린다."</p>
+  </section>
+
+  <section>
+    <h2>실행 — 기획에서 출시까지</h2>
+    <ul class="acts">
+      <li data-n="1"><strong>서비스 이원화 설계</strong> — 식자재쿡(B2C·개인점주)과 브랜드쿡(B2B·가맹본부/가맹점주)으로 제품 라인 분리, 프랜차이즈·로컬 커뮤니티 브랜드 대상 전용 서비스 정의</li>
+      <li data-n="2"><strong>가맹본부용 웹 대시보드 기획·출시</strong> — 타겟별 맞춤 대시보드로 본부가 가맹점 발주·정산 현황을 데이터로 관리하게 제공</li>
+      <li data-n="3"><strong>기술연구부 6인 개발 프로젝트 리드</strong> — 요구사항 정의, 우선순위 조율, 출시 검수를 PO로서 직접 수행</li>
+      <li data-n="4"><strong>B2B 홍보구좌 수익모델 설계</strong> — 프랜차이즈 브랜드 홍보구좌를 플랫폼에 구현해 구독·유통 외 수익 채널 확장</li>
+      <li data-n="5"><strong>파트너 얼라이언스 연동</strong> — "실제 외식업자에게 도움이 되는가"를 기준으로 업체를 선별해 입점 즉시 실행, 토스플레이스·KT하이오더 등과 협업·MOU</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>결과</h2>
+    <div class="stats">
+      <div class="stat"><b>+30%</b><span>분기 매출 상승<br>(직전 분기 평균 2.5억 기준)</span></div>
+      <div class="stat"><b>0→1</b><span>B2B 전용 플랫폼<br>기획→출시 완결</span></div>
+      <div class="stat"><b>+1</b><span>신규 수익 채널<br>(홍보구좌)</span></div>
+      <div class="stat"><b>18개사</b><span>버티컬 파트너<br>제휴·MOU</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>러닝</h2>
+    <p class="body">같은 인프라라도 <strong>고객별로 화면과 데이터를 분리하는 것만으로 지불의사가 달라진다</strong>는 것을 숫자로 확인했습니다. B2B 제품의 핵심은 기능의 수가 아니라 "이 대시보드를 회의 자료로 쓸 수 있는가"라는 데이터 신뢰였고, 그래서 기능 추가보다 데이터 정합에 개발 우선순위를 배정한 것이 유효했습니다.</p>
+  </section>
+
+  <section>
+    <h2>내가 직접 한 범위</h2>
+    <div class="role"><b>PO로서</b> 문제 발견 → 서비스 이원화 결정 → 대시보드 요구사항 정의 → 개발(6인) 우선순위 조율 → 출시·검수의 전 과정을 담당했습니다. 홍보구좌 수익모델과 파트너 선별 기준도 직접 설계했습니다. UI 구현은 기술연구부, 파트너 실무 협상은 영업 조직과 협업했습니다.</div>
+  </section>
+
+  <section>
+    <h2>증빙 아카이브</h2>
+    <div class="evidence">
+      <figure><img src="../assets/archive/fc-plan-p3.jpg" alt="사업계획서 문제인식 (대외비 블러 처리)"><figcaption>가맹사업 시장 문제 분석 (사업계획서)</figcaption></figure>
+      <figure><img src="../assets/archive/fc-plan-p5.jpg" alt="사업계획서 분석 페이지 (대외비 블러 처리)"><figcaption>차액가맹금·폐점률 분석</figcaption></figure>
+      <figure><img src="../assets/archive/fc-pt-p5.jpg" alt="발표자료 솔루션 (대외비 블러 처리)"><figcaption>식자재쿡·브랜드쿡 솔루션 구조</figcaption></figure>
+    </div>
+    <p class="ev-note">🔒 직접 작성한 실물 문서입니다. 대외비 특성상 웹에서는 블러 처리했으며, 면접 시 원본을 제시할 수 있습니다.</p>
+  </section>
+
+  <div class="next"><a href="foodcook-growth.html">← 이전: 연 매출 2배 스케일업</a><a href="boost.html">다음 케이스: 부스트 O2O 상용화와 피벗 →</a></div>
+</div>
+</body>
+</html>

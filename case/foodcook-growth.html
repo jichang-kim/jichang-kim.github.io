@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>케이스 — 식자재쿡 연 매출 2배 스케일업 | 김지창</title>
+<meta name="description" content="지역 검증 MVP를 전국 플랫폼으로 — 연 매출 2배 성장을 만든 전략 설계 케이스 스터디">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root { --bg:#FDFBF8; --surface:#FFFFFF; --ink:#1C2733; --ink-soft:#4A5A6A; --ink-faint:#8595A5; --line:#E9E2D8; --accent:#E8730C; --accent-soft:#FBF0E4; --shadow:0 1px 3px rgba(28,39,51,.06),0 8px 24px rgba(28,39,51,.05); }
+  @media (prefers-color-scheme: dark) { :root { --bg:#14181D; --surface:#1C222A; --ink:#EDF1F5; --ink-soft:#AEBBC8; --ink-faint:#6B7A89; --line:#2C353F; --accent:#F0883A; --accent-soft:#2A2118; --shadow:0 1px 3px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); } }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,"Apple SD Gothic Neo","Noto Sans KR",sans-serif; background:var(--bg); color:var(--ink); line-height:1.7; -webkit-font-smoothing:antialiased; word-break:keep-all; }
+  .wrap { max-width:720px; margin:0 auto; padding:0 20px 64px; }
+  .top { padding:28px 0 0; } .top a { font-size:14px; font-weight:600; color:var(--ink-soft); text-decoration:none; } .top a:hover { color:var(--accent); }
+  header.case { padding:36px 0 8px; }
+  .eyebrow { font-size:13px; font-weight:700; letter-spacing:.08em; color:var(--accent); }
+  h1 { font-size:30px; font-weight:800; letter-spacing:-.02em; line-height:1.3; margin-top:10px; }
+  .meta { margin-top:16px; display:flex; flex-wrap:wrap; gap:8px; }
+  .meta span { font-size:12.5px; font-weight:600; color:var(--ink-soft); background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:5px 13px; }
+  section { padding-top:36px; }
+  h2 { font-size:15px; font-weight:800; letter-spacing:.06em; color:var(--accent); margin-bottom:12px; }
+  p.body { font-size:15.5px; color:var(--ink-soft); margin-bottom:10px; }
+  p.body strong { color:var(--ink); }
+  ul.acts { list-style:none; margin-top:4px; }
+  ul.acts li { position:relative; padding:0 0 14px 30px; font-size:15px; color:var(--ink-soft); }
+  ul.acts li::before { content:attr(data-n); position:absolute; left:0; top:1px; width:21px; height:21px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-size:12px; font-weight:800; display:flex; align-items:center; justify-content:center; }
+  ul.acts li strong { color:var(--ink); }
+  .stats { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:6px; }
+  @media (min-width:560px){ .stats{ grid-template-columns:repeat(4,1fr);} }
+  .stat { background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:16px 14px; box-shadow:var(--shadow); }
+  .stat b { display:block; font-size:22px; font-weight:800; color:var(--accent); }
+  .stat span { display:block; margin-top:3px; font-size:12.5px; color:var(--ink-soft); line-height:1.45; }
+  .role { background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:12px; padding:18px 20px; font-size:14.5px; color:var(--ink-soft); }
+  .role b { color:var(--ink); }
+  .evidence { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:8px; }
+  .evidence figure { margin:0; }
+  .evidence img { width:100%; border:1px solid var(--line); border-radius:10px; display:block; }
+  .evidence figcaption { font-size:11.5px; color:var(--ink-faint); margin-top:6px; text-align:center; }
+  .ev-note { font-size:12.5px; color:var(--ink-faint); margin-top:10px; }
+  .next { margin-top:52px; padding-top:24px; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; font-size:14px; font-weight:600; }
+  .next a { color:var(--accent); text-decoration:none; } .next a:hover { text-decoration:underline; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a href="../index.html">← 김지창 포트폴리오</a></div>
+
+  <header class="case">
+    <span class="eyebrow">CASE STUDY 01 · 전략기획 / PM</span>
+    <h1>지역 검증 MVP를 전국 플랫폼으로 —<br>연 매출 2배 스케일업</h1>
+    <div class="meta"><span>㈜식자재쿡 · CSO/PO</span><span>2024.08 – 2026.08</span><span>온라인 10명 + 물류 24명, 30여 명 조직 리드</span><span>월 매출 10억+ 규모 사업 총괄</span></div>
+  </header>
+
+  <section>
+    <h2>문제 정의</h2>
+    <p class="body">식자재쿡은 영남권에서 검증을 마친 AI 기반 외식업 오퍼레이팅 플랫폼이었습니다. 그러나 성장에는 세 개의 구조적 병목이 있었습니다 — <strong>① 서비스가 부산·경남 권역에 갇혀 있었고 ② 개발이 전량 외주여서 개선 속도가 로드맵을 따라오지 못했으며 ③ 물류센터의 재고·발주가 경험칙에 의존</strong>해 잉여재고가 자금 회전을 눌렀습니다.</p>
+  </section>
+
+  <section>
+    <h2>가설</h2>
+    <p class="body">"영남권에서 검증된 모델을 <strong>그대로 복제하는 것이 아니라 수도권 상권 특성에 맞게 변형</strong>하고, 자산 투자 없이 <strong>물류 파트너십으로 전국망</strong>을 열고, <strong>운영 데이터 기반으로 재고를 자동화</strong>하면 — 같은 자원으로 매출을 두 배 이상 키울 수 있다."</p>
+  </section>
+
+  <section>
+    <h2>실행 — 직접 결정하고 리드한 것</h2>
+    <ul class="acts">
+      <li data-n="1"><strong>수도권 맞춤형 서비스 모델 설계·진출</strong> — 검증된 영남권 MVP를 기반으로 수도권 상권용 모델을 별도 구축</li>
+      <li data-n="2"><strong>3PL/4PL 물류 파트너 3사 발굴 → MOU·공급계약 체결</strong> — 자산 투자 없이 부산·경남 → 전국 단위 판로 확보</li>
+      <li data-n="3"><strong>ERP 권고발주(WMS) 기능 역제안</strong> — 회전율 기반 수요예측 자동발주 시스템을 직접 설계해 개발 조직에 제안·탑재</li>
+      <li data-n="4"><strong>외주 개발 체제 종료, 기술연구부 설립 주도</strong> — 6인 개발팀 프로젝트 리드, 수도권 기업부설연구소 신설</li>
+      <li data-n="5"><strong>얼라이언스 생태계 구축</strong> — 단순 입점이 아니라 "외식업자에게 실제 도움이 되는가"를 기준으로 파트너 선별, 토스플레이스(POS)·KT하이오더 등 18개사 제휴·MOU</li>
+      <li data-n="6"><strong>유저 온보딩 채널 강화 역제안</strong> — 이탈 방지를 위한 리타겟팅 세그먼트 분리, 타겟별 맞춤 프로모션 설계</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>결과</h2>
+    <div class="stats">
+      <div class="stat"><b>2배</b><span>연 매출 성장<br>(2025, 전년 대비 +100%)</span></div>
+      <div class="stat"><b>−20%</b><span>잉여재고액 감소<br>(자동발주 역제안 후)</span></div>
+      <div class="stat"><b>전국</b><span>서비스 판로 확보<br>(물류 3사 계약)</span></div>
+      <div class="stat"><b>2.5억</b><span>외부 개발 프로젝트 수주<br>(전략 역제안 주도)</span></div>
+    </div>
+    <p class="body" style="margin-top:14px">내재화한 기술 조직은 비용이 아니라 수익이 됐습니다 — 투자 플랫폼 '에어포인트'에 플랫폼 고도화·시장침투 전략을 역제안해 <strong>2.5억 원 규모 개발 프로젝트를 수주</strong>했고, 같은 기간 정부지원사업 2건(부산창조경제혁신센터·동아대 초기창업패키지)에 선정됐습니다.</p>
+  </section>
+
+  <section>
+    <h2>러닝</h2>
+    <p class="body">확장의 병목은 자금이 아니라 <strong>운영 데이터의 해상도</strong>였습니다. 재고·발주·고객 데이터가 정리되고 나서야 수도권 확장이 '감'이 아닌 계산 가능한 의사결정이 됐습니다. 그리고 외주 체제로는 그 해상도를 만들 수 없다는 것 — <strong>내재화는 비용 절감이 아니라 성장의 전제조건</strong>이라는 것이 이 기간의 가장 큰 교훈입니다.</p>
+  </section>
+
+  <section>
+    <h2>내가 직접 한 범위</h2>
+    <div class="role"><b>전략 총괄(CSO/PO)로서</b> 확장 로드맵·BM 고도화·파트너십 계약을 직접 주도했고, 온라인사업부 10명·물류사업부 24명 등 <b>30여 명 조직을 리드</b>했습니다. 경영관리부 업무 참여로 <b>전사·부서 P&L 분석과 개선 제안</b>, 영업 조직과의 고객 P&L 관리·온보딩 캠페인 설계까지 수행했습니다. 개발 실무는 기술연구부(6인)가, 제안·우선순위·검수는 제가 담당했습니다.</div>
+  </section>
+
+  <section>
+    <h2>증빙 아카이브</h2>
+    <div class="evidence">
+      <figure><img src="../assets/archive/fc-plan-p1.jpg" alt="식자재쿡 사업계획서 (대외비 블러 처리)"><figcaption>2026 초기창업패키지 사업계획서 (선정)</figcaption></figure>
+      <figure><img src="../assets/archive/fc-pt-p1.jpg" alt="식자재쿡 발표평가 자료 (대외비 블러 처리)"><figcaption>창업기업 발표평가 자료</figcaption></figure>
+      <figure><img src="../assets/archive/fc-pt-p3.jpg" alt="발표자료 문제인식 (대외비 블러 처리)"><figcaption>시장 문제 정의 슬라이드</figcaption></figure>
+    </div>
+    <p class="ev-note">🔒 직접 작성한 실물 문서입니다. 대외비 특성상 웹에서는 블러 처리했으며, 면접 시 원본을 제시할 수 있습니다. 데이터 분석 역량은 <a href="https://jichang-kim.github.io/selly-strategy-table/" target="_blank" rel="noopener" style="color:var(--accent)">전략 아카이브</a>의 대시보드 실물로 확인하실 수 있습니다.</p>
+  </section>
+
+  <div class="next"><a href="../index.html">← 전체 포트폴리오</a><a href="brandcook.html">다음 케이스: 브랜드쿡 0→1 런칭 →</a></div>
+</div>
+</body>
+</html>

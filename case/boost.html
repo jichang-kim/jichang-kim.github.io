@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>케이스 — 부스트 O2O 상용화와 전략적 피벗 | 김지창</title>
+<meta name="description" content="임대몰 검증 → 자체 앱 상용화 → 전략적 중단 결정까지, O2O 퀵커머스 풀사이클 케이스 스터디">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root { --bg:#FDFBF8; --surface:#FFFFFF; --ink:#1C2733; --ink-soft:#4A5A6A; --ink-faint:#8595A5; --line:#E9E2D8; --accent:#E8730C; --accent-soft:#FBF0E4; --shadow:0 1px 3px rgba(28,39,51,.06),0 8px 24px rgba(28,39,51,.05); }
+  @media (prefers-color-scheme: dark) { :root { --bg:#14181D; --surface:#1C222A; --ink:#EDF1F5; --ink-soft:#AEBBC8; --ink-faint:#6B7A89; --line:#2C353F; --accent:#F0883A; --accent-soft:#2A2118; --shadow:0 1px 3px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); } }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,"Apple SD Gothic Neo","Noto Sans KR",sans-serif; background:var(--bg); color:var(--ink); line-height:1.7; -webkit-font-smoothing:antialiased; word-break:keep-all; }
+  .wrap { max-width:720px; margin:0 auto; padding:0 20px 64px; }
+  .top { padding:28px 0 0; } .top a { font-size:14px; font-weight:600; color:var(--ink-soft); text-decoration:none; } .top a:hover { color:var(--accent); }
+  header.case { padding:36px 0 8px; }
+  .eyebrow { font-size:13px; font-weight:700; letter-spacing:.08em; color:var(--accent); }
+  h1 { font-size:30px; font-weight:800; letter-spacing:-.02em; line-height:1.3; margin-top:10px; }
+  .meta { margin-top:16px; display:flex; flex-wrap:wrap; gap:8px; }
+  .meta span { font-size:12.5px; font-weight:600; color:var(--ink-soft); background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:5px 13px; }
+  section { padding-top:36px; }
+  h2 { font-size:15px; font-weight:800; letter-spacing:.06em; color:var(--accent); margin-bottom:12px; }
+  p.body { font-size:15.5px; color:var(--ink-soft); margin-bottom:10px; }
+  p.body strong { color:var(--ink); }
+  ul.acts { list-style:none; margin-top:4px; }
+  ul.acts li { position:relative; padding:0 0 14px 30px; font-size:15px; color:var(--ink-soft); }
+  ul.acts li::before { content:attr(data-n); position:absolute; left:0; top:1px; width:21px; height:21px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-size:12px; font-weight:800; display:flex; align-items:center; justify-content:center; }
+  ul.acts li strong { color:var(--ink); }
+  .stats { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:6px; }
+  @media (min-width:560px){ .stats{ grid-template-columns:repeat(4,1fr);} }
+  .stat { background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:16px 14px; box-shadow:var(--shadow); }
+  .stat b { display:block; font-size:22px; font-weight:800; color:var(--accent); }
+  .stat span { display:block; margin-top:3px; font-size:12.5px; color:var(--ink-soft); line-height:1.45; }
+  .role { background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:12px; padding:18px 20px; font-size:14.5px; color:var(--ink-soft); }
+  .role b { color:var(--ink); }
+  .pivot { background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:18px 20px; font-size:14.5px; color:var(--ink-soft); }
+  .pivot b { color:var(--accent); }
+  .evidence { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:8px; }
+  .evidence figure { margin:0; }
+  .evidence img { width:100%; border:1px solid var(--line); border-radius:10px; display:block; }
+  .evidence figcaption { font-size:11.5px; color:var(--ink-faint); margin-top:6px; text-align:center; }
+  .ev-note { font-size:12.5px; color:var(--ink-faint); margin-top:10px; }
+  .next { margin-top:52px; padding-top:24px; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; font-size:14px; font-weight:600; }
+  .next a { color:var(--accent); text-decoration:none; } .next a:hover { text-decoration:underline; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a href="../index.html">← 김지창 포트폴리오</a></div>
+
+  <header class="case">
+    <span class="eyebrow">CASE STUDY 03 · PO / PMO · 피벗 판단</span>
+    <h1>마트를 다크스토어로 —<br>부스트 O2O 상용화, 그리고 접기로 한 결정</h1>
+    <div class="meta"><span>수식자재유통센타 · 팀장</span><span>2021.07 – 2024.07</span><span>20여 명 조직 리드</span><span>월 매출 10억 규모 기업</span></div>
+  </header>
+
+  <section>
+    <h2>문제 정의</h2>
+    <p class="body">부산에서 리테일·식자재 마트 4개 점포를 운영하는 회사였습니다. 온라인 전환은 피할 수 없었지만, 별도 물류센터를 지을 자본은 없었습니다. 가설은 하나 — <strong>"운영 중인 오프라인 매장을 다크스토어(물류 거점)로 쓰면, 물류센터 없이 당일배송 퀵커머스가 가능하다."</strong></p>
+  </section>
+
+  <section>
+    <h2>검증 — 만들기 전에 팔아보기</h2>
+    <p class="body">자체 개발부터 시작하지 않았습니다. 2021년 10월 <strong>임대몰(외부 솔루션)로 최소 비용 출시</strong>해 수요부터 검증했고, <strong>첫 달 매출 3,000만 원 · 월 주문 약 2,000건</strong>으로 시장성을 확인했습니다. 동시에 한계도 명확해졌습니다 — 임대몰은 매장 ERP와 연동되지 않아 재고 불일치·포인트·쿠폰 문제가 누적됐고, 서비스 품질과 업무 효율이 함께 떨어졌습니다. <strong>"수요는 있다, 시스템이 문제다"</strong>가 검증의 결론이었습니다.</p>
+  </section>
+
+  <section>
+    <h2>실행 — 자체 시스템 상용화</h2>
+    <ul class="acts">
+      <li data-n="1"><strong>정부지원금으로 개발 자금 조달</strong> — 울산대 초기창업패키지, 부산대 창업중심대학 도약패키지(패스트트랙) 선정. 사업계획서 작성부터 PT 발표, 외주 용역 관리·검수까지 총괄</li>
+      <li data-n="2"><strong>자체 앱 개발·출시</strong> — Android/iOS 심사 승인, PG사 연동·결제/반품 정책 수립, 관리자단 연동</li>
+      <li data-n="3"><strong>ERP 연동 기반 POS 고도화·자체 개발 주도</strong> — 임대몰에서 확인한 재고·포인트 문제를 시스템 내재화로 해결</li>
+      <li data-n="4"><strong>부산 특화 물류 로직 설계</strong> — B2C 소매와 B2B 식자재 대용량을 한 배송망에서 처리, 2만여 SKU 운영</li>
+      <li data-n="5"><strong>지역 소상공인 위탁판매·독점 상품</strong> — 대형 플랫폼과의 상품 차별화 + 매장 공간을 활용한 지역 플리마켓으로 자연 유입 확보</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>결과</h2>
+    <div class="stats">
+      <div class="stat"><b>+20%</b><span>운영 기간<br>월평균 매출 상승 유지</span></div>
+      <div class="stat"><b>2만+</b><span>운영 SKU<br>(리테일+식자재)</span></div>
+      <div class="stat"><b>2건</b><span>정부지원사업 선정<br>(개발 자금 조달)</span></div>
+      <div class="stat"><b>당일</b><span>배송 체계<br>(매장 = 다크스토어)</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>피벗 — 접는 것도 전략이다</h2>
+    <div class="pivot"><b>부스트는 현재 운영을 중단한 서비스입니다.</b> 숨기지 않습니다 — 오프라인 매출이 빠르게 성장하며 사업 확장이 진행되자, 한정된 조직 리소스를 어디에 집중할지 선택해야 했습니다. 수익성과 확장성이 검증된 오프라인에 집중하기 위해 <b>서비스 일시 중단을 직접 제안·결정</b>했습니다. 플랫폼을 만든 사람이 플랫폼을 접자고 말하는 것 — 그것이 이 케이스에서 가장 어려운 의사결정이었습니다.</div>
+  </section>
+
+  <section>
+    <h2>러닝</h2>
+    <p class="body">첫째, <strong>"만들기 전에 팔아보기"의 가치</strong> — 임대몰 선검증이 없었다면 자체 개발 투자는 도박이었을 겁니다. 둘째, O2O의 성패는 앱이 아니라 <strong>재고 데이터 정합</strong>에서 갈린다는 것. 셋째, 성과가 나는 서비스라도 <strong>기회비용 앞에서 접을 수 있어야 조직이 성장한다</strong>는 것 — 이 경험이 이후 식자재쿡에서 확장 우선순위를 판단하는 기준이 됐습니다.</p>
+  </section>
+
+  <section>
+    <h2>내가 직접 한 범위</h2>
+    <div class="role"><b>팀장으로서</b> 플랫폼 기획·상용화 전 과정과 온라인사업부(3명)·매장운영/물류(17명) <b>20여 명 조직 운영</b>을 담당했습니다. 정부지원사업 2건의 사업계획서·발표·용역 검수를 직접 수행했고, 총괄관리부 업무 참여로 고객 P&L 분석과 오프라인 마케팅(4개 점포 VMD·행사 기획전·e-전단)까지 리드했습니다.</div>
+  </section>
+
+  <section>
+    <h2>증빙 아카이브</h2>
+    <div class="evidence">
+      <figure><img src="../assets/archive/su-report-p1.jpg" alt="창업중심대학 최종보고서 표지 (대외비 블러 처리)"><figcaption>2023 창업중심대학 최종보고서</figcaption></figure>
+      <figure><img src="../assets/archive/su-report-p2.jpg" alt="목표 대비 실적 (대외비 블러 처리)"><figcaption>사업계획 달성 현황 (목표 대비 실적)</figcaption></figure>
+      <figure><img src="../assets/archive/su-report-p5.jpg" alt="세부추진실적 (대외비 블러 처리)"><figcaption>부스트 앱·운영 세부 실적</figcaption></figure>
+    </div>
+    <p class="ev-note">🔒 직접 작성한 정부 제출 실물 보고서입니다. 대외비 특성상 웹에서는 블러 처리했으며, 면접 시 원본을 제시할 수 있습니다.</p>
+  </section>
+
+  <div class="next"><a href="brandcook.html">← 이전: 브랜드쿡 0→1 런칭</a><a href="../index.html">전체 포트폴리오 →</a></div>
+</div>
+</body>
+</html>
