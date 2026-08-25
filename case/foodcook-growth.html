@@ -41,11 +41,22 @@
   .ev-note { font-size:12.5px; color:var(--ink-faint); margin-top:10px; }
   .next { margin-top:52px; padding-top:24px; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; font-size:14px; font-weight:600; }
   .next a { color:var(--accent); text-decoration:none; } .next a:hover { text-decoration:underline; }
+
+  /* 페이지 좌우 슬라이드 전환 */
+  body.slide-in-right { animation: pageInR .34s ease both; }
+  body.slide-in-left  { animation: pageInL .34s ease both; }
+  body.slide-out-left  { animation: pageOutL .22s ease both; }
+  body.slide-out-right { animation: pageOutR .22s ease both; }
+  @keyframes pageInR { from { opacity:0; transform:translateX(56px); } to { opacity:1; transform:none; } }
+  @keyframes pageInL { from { opacity:0; transform:translateX(-56px); } to { opacity:1; transform:none; } }
+  @keyframes pageOutL { to { opacity:0; transform:translateX(-56px); } }
+  @keyframes pageOutR { to { opacity:0; transform:translateX(56px); } }
+  @media (prefers-reduced-motion: reduce) { body.slide-in-right, body.slide-in-left, body.slide-out-left, body.slide-out-right { animation:none; } }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="top"><a href="../index.html">← 김지창 포트폴리오</a></div>
+  <div class="top"><a data-nav="prev" href="../index.html">← 김지창 포트폴리오</a></div>
 
   <header class="case">
     <span class="eyebrow">CASE STUDY 01 · 전략기획 / PM</span>
@@ -106,7 +117,29 @@
     <p class="ev-note">🔒 직접 작성한 실물 문서입니다. 대외비 특성상 웹에서는 블러 처리했으며, 면접 시 원본을 제시할 수 있습니다. 데이터 분석 역량은 <a href="https://jichang-kim.github.io/selly-strategy-table/" target="_blank" rel="noopener" style="color:var(--accent)">전략 아카이브</a>의 대시보드 실물로 확인하실 수 있습니다.</p>
   </section>
 
-  <div class="next"><a href="../index.html">← 전체 포트폴리오</a><a href="brandcook.html">다음 케이스: 브랜드쿡 0→1 런칭 →</a></div>
+  <div class="next"><a data-nav="prev" href="../index.html">← 전체 포트폴리오</a><a data-nav="next" href="brandcook.html">다음 케이스: 브랜드쿡 0→1 런칭 →</a></div>
 </div>
+<script>
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function sGet() { try { var v = sessionStorage.getItem('pageDir'); sessionStorage.removeItem('pageDir'); return v; } catch (e) { return null; } }
+    function sSet(v) { try { sessionStorage.setItem('pageDir', v); } catch (e) {} }
+    var dir = sGet();
+    if (dir && !reduce) document.body.classList.add(dir === 'next' ? 'slide-in-right' : 'slide-in-left');
+    document.querySelectorAll('a[data-nav]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        if (reduce || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+        e.preventDefault();
+        var d = a.getAttribute('data-nav');
+        sSet(d);
+        document.body.classList.add(d === 'next' ? 'slide-out-left' : 'slide-out-right');
+        setTimeout(function () { location.href = a.href; }, 200);
+      });
+    });
+    window.addEventListener('pageshow', function (e) {
+      if (e.persisted) document.body.classList.remove('slide-out-left', 'slide-out-right', 'slide-in-right', 'slide-in-left');
+    });
+  })();
+</script>
 </body>
 </html>

@@ -135,6 +135,17 @@
     .job { break-inside:avoid; }
     .job-body { max-height:none !important; overflow:visible; }
   }
+
+  /* 페이지 좌우 슬라이드 전환 */
+  body.slide-in-right { animation: pageInR .34s ease both; }
+  body.slide-in-left  { animation: pageInL .34s ease both; }
+  body.slide-out-left  { animation: pageOutL .22s ease both; }
+  body.slide-out-right { animation: pageOutR .22s ease both; }
+  @keyframes pageInR { from { opacity:0; transform:translateX(56px); } to { opacity:1; transform:none; } }
+  @keyframes pageInL { from { opacity:0; transform:translateX(-56px); } to { opacity:1; transform:none; } }
+  @keyframes pageOutL { to { opacity:0; transform:translateX(-56px); } }
+  @keyframes pageOutR { to { opacity:0; transform:translateX(56px); } }
+  @media (prefers-reduced-motion: reduce) { body.slide-in-right, body.slide-in-left, body.slide-out-left, body.slide-out-right { animation:none; } }
 </style>
 </head>
 <body>
@@ -161,29 +172,29 @@
   </header>
 
   <div class="stats">
-    <a class="stat" href="case/foodcook-growth.html"><b>2배</b><span>연 매출 성장<br>(2025, 전년 대비 +100%)</span><em class="go" style="font-style:normal">케이스 보기 →</em></a>
+    <a class="stat" data-nav="next" href="case/foodcook-growth.html"><b>2배</b><span>연 매출 성장<br>(2025, 전년 대비 +100%)</span><em class="go" style="font-style:normal">케이스 보기 →</em></a>
     <a class="stat" href="#job-foodcook"><b>30명</b><span>리드 조직 규모<br>(온라인·물류 2개 사업부)</span><em class="go" style="font-style:normal">경력 보기 →</em></a>
-    <a class="stat" href="case/foodcook-growth.html"><b>2.5억</b><span>개발 프로젝트 수주<br>(전략 역제안 주도)</span><em class="go" style="font-style:normal">케이스 보기 →</em></a>
-    <a class="stat" href="case/boost.html"><b>4회</b><span>정부지원사업 선정<br>(사업계획서·발표 총괄)</span><em class="go" style="font-style:normal">케이스 보기 →</em></a>
+    <a class="stat" data-nav="next" href="case/foodcook-growth.html"><b>2.5억</b><span>개발 프로젝트 수주<br>(전략 역제안 주도)</span><em class="go" style="font-style:normal">케이스 보기 →</em></a>
+    <a class="stat" data-nav="next" href="case/boost.html"><b>4회</b><span>정부지원사업 선정<br>(사업계획서·발표 총괄)</span><em class="go" style="font-style:normal">케이스 보기 →</em></a>
   </div>
 
   <section id="cases">
     <h2>케이스 스터디</h2>
     <p class="sec-sub">문제 정의 → 가설 → 실행 → 결과 → 러닝. 대표 사례 3건을 깊이 있게 정리했습니다.</p>
     <div class="cases">
-      <a class="case-card" href="case/foodcook-growth.html">
+      <a class="case-card" data-nav="next" href="case/foodcook-growth.html">
         <span class="tag">CASE 01 · 전략기획 / PM</span>
         <h3>지역 검증 MVP를 전국 플랫폼으로 — 연 매출 2배 스케일업 <span class="arrow">→</span></h3>
         <p class="desc">수도권 모델 구축, 물류 3사 파트너십, 수요예측 자동발주 역제안, 기술 조직 내재화까지 — 성장의 병목을 하나씩 제거한 2년.</p>
         <div class="nums"><span>매출 2배</span><span>잉여재고 −20%</span><span>파트너 18개사</span><span>2.5억 수주</span></div>
       </a>
-      <a class="case-card" href="case/brandcook.html">
+      <a class="case-card" data-nav="next" href="case/brandcook.html">
         <span class="tag">CASE 02 · PO / 0→1</span>
         <h3>가맹본부의 페인포인트에서 B2B 플랫폼 '브랜드쿡'까지 <span class="arrow">→</span></h3>
         <p class="desc">서비스 이원화와 본부용 데이터 대시보드로 새 고객·새 수익 채널을 연 0→1 런칭. 기술연구부 6인 개발 리드.</p>
         <div class="nums"><span>분기 매출 +30%</span><span>0→1 출시</span><span>신규 수익 채널</span></div>
       </a>
-      <a class="case-card" href="case/boost.html">
+      <a class="case-card" data-nav="next" href="case/boost.html">
         <span class="tag">CASE 03 · PO / PMO · 피벗 판단</span>
         <h3>마트를 다크스토어로 — 부스트 O2O 상용화, 그리고 접기로 한 결정 <span class="arrow">→</span></h3>
         <p class="desc">임대몰로 먼저 검증(첫 달 3,000만 원·월 2,000건), 자체 앱·POS/ERP로 상용화, 그리고 기회비용 앞에서 접은 전략적 피벗까지.</p>
@@ -375,5 +386,27 @@
   openJobFromHash();
 </script>
 
+<script>
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function sGet() { try { var v = sessionStorage.getItem('pageDir'); sessionStorage.removeItem('pageDir'); return v; } catch (e) { return null; } }
+    function sSet(v) { try { sessionStorage.setItem('pageDir', v); } catch (e) {} }
+    var dir = sGet();
+    if (dir && !reduce) document.body.classList.add(dir === 'next' ? 'slide-in-right' : 'slide-in-left');
+    document.querySelectorAll('a[data-nav]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        if (reduce || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+        e.preventDefault();
+        var d = a.getAttribute('data-nav');
+        sSet(d);
+        document.body.classList.add(d === 'next' ? 'slide-out-left' : 'slide-out-right');
+        setTimeout(function () { location.href = a.href; }, 200);
+      });
+    });
+    window.addEventListener('pageshow', function (e) {
+      if (e.persisted) document.body.classList.remove('slide-out-left', 'slide-out-right', 'slide-in-right', 'slide-in-left');
+    });
+  })();
+</script>
 </body>
 </html>
