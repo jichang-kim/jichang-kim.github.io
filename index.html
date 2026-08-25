@@ -39,9 +39,12 @@
 
   .stats { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin:8px 0 0; }
   @media (min-width:640px) { .stats { grid-template-columns:repeat(4,1fr); } }
-  .stat { background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:18px 16px; box-shadow:var(--shadow); }
-  .stat b { display:block; font-size:24px; font-weight:800; letter-spacing:-.01em; color:var(--accent); }
-  .stat span { display:block; margin-top:4px; font-size:13px; color:var(--ink-soft); line-height:1.4; }
+  a.stat { display:block; text-decoration:none; color:inherit; background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:18px 16px; box-shadow:var(--shadow); transition:border-color .15s, transform .15s; }
+  a.stat:hover { border-color:var(--accent); transform:translateY(-2px); }
+  a.stat b { display:block; font-size:24px; font-weight:800; letter-spacing:-.01em; color:var(--accent); }
+  a.stat span { display:block; margin-top:4px; font-size:13px; color:var(--ink-soft); line-height:1.4; }
+  a.stat .go { display:block; margin-top:8px; font-size:11.5px; font-weight:700; color:var(--ink-faint); opacity:0; transition:opacity .15s; }
+  a.stat:hover .go { opacity:1; color:var(--accent); }
 
   section { padding:44px 0 8px; }
   h2 { font-size:22px; font-weight:800; letter-spacing:-.01em; display:flex; align-items:center; gap:10px; margin-bottom:8px; }
@@ -75,6 +78,13 @@
   .job li { position:relative; padding-left:18px; margin-bottom:7px; font-size:14.5px; color:var(--ink-soft); }
   .job li::before { content:"—"; position:absolute; left:0; color:var(--accent); font-weight:700; }
   .job li strong { color:var(--ink); font-weight:700; }
+  /* 경력 서랍(아코디언) */
+  .job-toggle { cursor:pointer; user-select:none; }
+  .job-toggle:hover h3 { color:var(--accent); }
+  .chev { margin-left:8px; font-size:13px; color:var(--ink-faint); transition:transform .3s, color .3s; display:inline-block; }
+  .job.open .chev { transform:rotate(180deg); color:var(--accent); }
+  .job-body { overflow:hidden; max-height:0; transition:max-height .55s ease; }
+  .job.open .job-body { max-height:2600px; }
   .archive-strip { margin-top:16px; display:flex; gap:8px; align-items:flex-start; }
   .archive-strip a { display:block; width:76px; flex-shrink:0; }
   .archive-strip img { width:100%; border:1px solid var(--line); border-radius:8px; display:block; }
@@ -120,9 +130,10 @@
     body { font-size:12px; }
     header { padding:24px 0 16px; }
     section { padding:18px 0 4px; }
-    .hero-links, .archive-strip, footer .fine { display:none; }
+    .hero-links, .archive-strip, footer .fine, .chev, a.stat .go { display:none; }
     a.case-card, .project, .stat, .cert { box-shadow:none; break-inside:avoid; }
     .job { break-inside:avoid; }
+    .job-body { max-height:none !important; overflow:visible; }
   }
 </style>
 </head>
@@ -136,14 +147,13 @@
       <div>
         <span class="eyebrow">Business Strategist · PM/PO · 전략기획</span>
         <h1>김지창</h1>
-        <p class="persona">1995년생 · 남 · 군 만기전역 · 010-3660-1769</p>
+        <p class="persona">1995년생 · 남 · 010-3660-1769</p>
       </div>
     </div>
     <p class="tagline">"누가 알았겠어요, 동네 서비스를 전국으로 넓히게 되었을지.<br>
     <strong>데이터로 보이지 않는 가능성까지 바라봅니다.</strong>"</p>
     <p class="sub-meta">유통·커머스 도메인 9년 · 리더십 5년 · 30명 조직 스케일업 총괄 (CSO/PO)</p>
     <div class="hero-links">
-      <a href="mailto:jc36601769@gmail.com">✉️ 이메일</a>
       <a href="https://github.com/jichang-kim" target="_blank" rel="noopener">💻 GitHub</a>
       <a href="https://jichang-kim.github.io/selly-strategy-table/" target="_blank" rel="noopener">📊 전략 아카이브</a>
       <button onclick="window.print()">📄 PDF로 저장</button>
@@ -151,10 +161,10 @@
   </header>
 
   <div class="stats">
-    <div class="stat"><b>2배</b><span>연 매출 성장<br>(2025, 전년 대비 +100%)</span></div>
-    <div class="stat"><b>30명</b><span>리드 조직 규모<br>(온라인·물류 2개 사업부)</span></div>
-    <div class="stat"><b>2.5억</b><span>개발 프로젝트 수주<br>(전략 역제안 주도)</span></div>
-    <div class="stat"><b>4회</b><span>정부지원사업 선정<br>(사업계획서·발표 총괄)</span></div>
+    <a class="stat" href="case/foodcook-growth.html"><b>2배</b><span>연 매출 성장<br>(2025, 전년 대비 +100%)</span><em class="go" style="font-style:normal">케이스 보기 →</em></a>
+    <a class="stat" href="#job-foodcook"><b>30명</b><span>리드 조직 규모<br>(온라인·물류 2개 사업부)</span><em class="go" style="font-style:normal">경력 보기 →</em></a>
+    <a class="stat" href="case/foodcook-growth.html"><b>2.5억</b><span>개발 프로젝트 수주<br>(전략 역제안 주도)</span><em class="go" style="font-style:normal">케이스 보기 →</em></a>
+    <a class="stat" href="case/boost.html"><b>4회</b><span>정부지원사업 선정<br>(사업계획서·발표 총괄)</span><em class="go" style="font-style:normal">케이스 보기 →</em></a>
   </div>
 
   <section id="cases">
@@ -184,15 +194,18 @@
 
   <section id="career">
     <h2>경력</h2>
-    <p class="sec-sub">총 9년 · 리더십 5년 (팀장 3년 + 총괄 2년)</p>
+    <p class="sec-sub">총 9년 · 리더십 5년 (팀장 3년 + 총괄 2년) — 회사명을 누르면 상세가 열립니다</p>
 
-    <div class="job">
+    <div class="job acc open" id="job-foodcook">
+      <div class="job-toggle">
       <div class="job-head">
         <h3>㈜식자재쿡</h3>
         <span class="role">전략기획 총괄 (CSO/PO)</span>
-        <span class="period">2024.08 – 2026.08 · 2년</span>
+        <span class="period">2024.08 – 2026.08 · 2년 <span class="chev">▾</span></span>
       </div>
       <p class="summary">AI 기반 외식업 오퍼레이팅 플랫폼 — 전국 스케일업 및 신사업 총괄 · 30여 명 조직 리드(온라인 10·물류 24) · 전사/부서 P&L 분석·개선</p>
+      </div>
+      <div class="job-body">
       <div class="group">비즈니스 모델 고도화 · 전국망 확장</div>
       <ul>
         <li><strong>2025년 연 매출 전년 대비 2배(+100%) 성장</strong> — 검증된 영남권 MVP 기반 수도권 맞춤형 모델 구축·진출</li>
@@ -216,15 +229,19 @@
         <a href="case/foodcook-growth.html"><img src="assets/archive/fc-pt-p1.jpg" alt="발표자료 (블러)"></a>
         <p class="archive-note">🔒 선정 사업계획서·발표자료 실물 보유 (대외비 — 블러 처리, 면접 시 원본 제시 가능)</p>
       </div>
+      </div>
     </div>
 
-    <div class="job">
+    <div class="job acc" id="job-su">
+      <div class="job-toggle">
       <div class="job-head">
         <h3>수식자재유통센타</h3>
         <span class="role">팀장 · O2O 플랫폼/오프라인 운영 총괄</span>
-        <span class="period">2021.07 – 2024.07 · 3년</span>
+        <span class="period">2021.07 – 2024.07 · 3년 <span class="chev">▾</span></span>
       </div>
       <p class="summary">지역 밀착형 O2O 퀵커머스 '부스트' 구축 및 오프라인 운영 총괄 · 20여 명 조직 리드 · 고객 P&L 분석</p>
+      </div>
+      <div class="job-body">
       <div class="group">O2O 플랫폼 기획 · 상용화</div>
       <ul>
         <li>오프라인 매장을 <strong>다크스토어(물류 거점)로 활용</strong>하는 부산 권역 당일배송 퀵커머스 기획·런칭 — 임대몰 선검증(첫 달 매출 3,000만 원·월 2,000건) 후 자체 앱 개발</li>
@@ -241,33 +258,42 @@
         <a href="case/boost.html"><img src="assets/archive/su-report-p5.jpg" alt="세부실적 (블러)"></a>
         <p class="archive-note">🔒 정부 제출 최종보고서 실물 보유 (대외비 — 블러 처리, 면접 시 원본 제시 가능)</p>
       </div>
+      </div>
     </div>
 
-    <div class="job">
+    <div class="job acc" id="job-fruut">
+      <div class="job-toggle">
       <div class="job-head">
         <h3>푸룻농업회사법인</h3>
         <span class="role">온라인사업부 MD · 바잉MD</span>
-        <span class="period">2018.12 – 2020.10 · 1년 11개월</span>
+        <span class="period">2018.12 – 2020.10 · 1년 11개월 <span class="chev">▾</span></span>
       </div>
       <p class="summary">신선식품(농산) 대형 리테일 공급 및 이커머스 운영</p>
+      </div>
+      <div class="job-body">
       <ul>
         <li>대형 유통사 신선식품 발주대응·거래처관리 — <strong>SSG 새벽배송 Neo.1~3센터, 롯데마트 물류센터, 쿠팡 로켓프레시</strong></li>
         <li><strong>삼성웰스토리 연단위 입찰</strong> — 수입·특수야채 공급 계약 수행</li>
         <li>가락시장·산지 현장 기반 시세·수급 분석 → 생산관리 (노지·하우스·스마트팜) · 대형마트 트렌드 분석</li>
         <li>자사몰·오픈마켓 운영 (고도몰·식스샵·스마트스토어·11번가 등) — 상세페이지·스튜디오 촬영·보정까지 인하우스 수행</li>
       </ul>
+      </div>
     </div>
 
-    <div class="job minor">
+    <div class="job minor acc" id="job-early">
+      <div class="job-toggle">
       <div class="job-head">
         <h3>이전 경력</h3>
-        <span class="period">2013 – 2018</span>
+        <span class="period">2013 – 2018 <span class="chev">▾</span></span>
       </div>
+      </div>
+      <div class="job-body">
       <p class="minor-list">
         <b>㈜우리물산</b> 자사몰·오픈마켓 MD · 2018.01–2018.11 — 오픈마켓 기획전 참여, 자사몰 이벤트 기획·매출 분석<br>
         <b>㈜퍼스트가구</b> 자사몰·오픈마켓 MD · 2017.06–2018.01 — 스튜디오 촬영·상세페이지 제작, 기획전 운영, 제품 P&L 분석<br>
-        해병대 복무 (2014–2016, 만기전역) &nbsp;/&nbsp; <b>㈜누비지오</b> 자사몰 AMD·인하우스 웹디자인 · 2013.08–2014.02
+        해병대 복무 (2014–2016) &nbsp;/&nbsp; <b>㈜누비지오</b> 자사몰 AMD·인하우스 웹디자인 · 2013.08–2014.02
       </p>
+      </div>
     </div>
   </section>
 
@@ -335,6 +361,19 @@
   </footer>
 
 </div>
+
+<script>
+  document.querySelectorAll('.job.acc .job-toggle').forEach(function (t) {
+    t.addEventListener('click', function () { t.parentElement.classList.toggle('open'); });
+  });
+  function openJobFromHash() {
+    if (!location.hash) return;
+    var el = document.getElementById(location.hash.slice(1));
+    if (el && el.classList.contains('acc')) el.classList.add('open');
+  }
+  window.addEventListener('hashchange', openJobFromHash);
+  openJobFromHash();
+</script>
 
 </body>
 </html>
